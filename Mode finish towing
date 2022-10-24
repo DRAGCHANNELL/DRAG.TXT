@@ -1,0 +1,85 @@
+0.64705002308;0.99995863438;0.97000002861:25 
+
+
+
+
+
+local setVis=gg.setVisible
+local isVis=gg.isVisible
+local showmenu=false
+
+gg.alert(os.date("Today : %Y/%m/%d\nTime : %H:%M:%S\nDRAG"))
+
+::menu:: do
+  while true do
+    if isVis() == true then
+      showmenu=true
+      setVis(false)
+    end
+    if showmenu==true then
+      showmenu=false
+
+gopal=gg.choice({"mode finish"})
+if OPEN ==1 then goto mod
+end 
+end
+end
+end
+
+::mod:: do
+gg.setRanges(gg.REGION_ANONYMOUS) 
+gg.clearResults()
+gg.clearList()
+gg.setVisible(false) 
+gg.searchNumber("-1064073953", gg.TYPE_DWORD, false, gg.SIGN_EQUAL, 0, -1, 0)
+
+local t = gg.getResults(9999, nil, nil, nil, nil, nil, nil, nil, nil)
+gg.addListItems(t)
+t = nil
+
+gg.clearResults()
+
+local copy = false
+local t = gg.getListItems()
+if not copy then gg.removeListItems(t) end
+for i, v in ipairs(t) do
+	v.address = v.address + 0xffffffffffffffe8
+	if copy then v.name = v.name..' #2' end
+end
+gg.addListItems(t)
+t = nil
+copy = nil
+
+local copy = false
+local t = gg.getListItems()
+if not copy then gg.removeListItems(t) end
+for i, v in ipairs(t) do
+	v.address = v.address + 0xffffffffffffffe8
+	if copy then v.name = v.name..' #2' end
+end
+gg.addListItems(t)
+t = nil
+copy = nil
+
+revert = gg.getListItems()
+local t = gg.getListItems()
+for i, v in ipairs(t) do
+	if v.flags == gg.TYPE_DWORD then
+		v.value = "1137016989"
+		v.freeze = true
+		v.freezeType = gg.FREEZE_NORMAL
+	end
+end
+gg.addListItems(t)
+t = nil
+
+
+gg.clearResults()
+gg.clearList()
+if gg.isVisible(true) then
+gg.clearResults()
+MainExit()
+end
+gg.toast("go")
+gg.sleep(900)
+end 
